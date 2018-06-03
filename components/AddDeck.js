@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   View,
+  KeyboardAvoidingView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -19,11 +20,15 @@ class AddDeck extends Component {
 
   onSubmitDeck = () => {
     if (this.state.title === '') alert('Please enter a deck title');
+    this.props.screenProps.saveDeckTitle(this.state.title);
+    this.setState({ title: '' }, () => {
+      this.props.navigation.navigate('Decks');
+    });
   };
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.heading}>Add New Deck</Text>
         <View style={styles.inputContainer}>
           <TextInput
@@ -42,7 +47,7 @@ class AddDeck extends Component {
             <Text style={styles.buttonText}>Add Deck</Text>
           </View>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

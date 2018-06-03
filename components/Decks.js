@@ -5,7 +5,7 @@ export default class Decks extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Decks</Text>
+        {this.props.screenProps.decks.map(deck => <Text>Hello</Text>)}
       </View>
     );
   }
