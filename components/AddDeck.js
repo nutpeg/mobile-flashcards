@@ -5,7 +5,7 @@ class AddDeck extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>AddDeck</Text>
+        <Text style={styles.heading}>AddDeck</Text>
       </View>
     );
   }
@@ -18,5 +18,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  heading: {
+    fontSize: 30,
   },
 });
