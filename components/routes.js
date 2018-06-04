@@ -18,10 +18,10 @@ const DecksNav = createStackNavigator({
 export default createBottomTabNavigator(
   {
     Decks: {
-      screen: Decks,
+      screen: DecksNav,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <MaterialCommunityIcons name="cards" size={30} color={tintColor} />
+          <MaterialCommunityIcons name="cards" size={26} color={tintColor} />
         ),
       },
     },
@@ -29,7 +29,7 @@ export default createBottomTabNavigator(
       screen: AddDeck,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <MaterialIcons name="add" size={30} color={tintColor} />
+          <MaterialIcons name="add" size={26} color={tintColor} />
         ),
       },
     },

@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   heading: {
-    fontSize: 30,
+    fontSize: 26,
     marginBottom: 20,
   },
   inputContainer: {

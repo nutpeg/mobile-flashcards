@@ -1,11 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import DecksListItem from './DecksListItem';
+import { colors } from '../utils/colors';
+
+const keyExtractor = ({ title }) => title;
 
 export default class Decks extends Component {
+  renderDeck = ({ item }) => {
+    const { title, questions } = item;
+    const navigate = this.props.navigation.navigate;
+    const cardCount = questions ? questions.length : 0;
+    return (
+      <DecksListItem
+        title={title}
+        cardCount={cardCount}
+        onPress={() => navigate('Deck', { deck: item, cardCount: cardCount })}
+      />
+    );
+  };
   render() {
+    const decks = this.props.screenProps.decks;
     return (
       <View style={styles.container}>
-        {this.props.screenProps.decks.map(deck => <Text>Hello</Text>)}
+        <FlatList
+          data={decks}
+          keyExtractor={keyExtractor}
+          renderItem={this.renderDeck}
+        />
       </View>
     );
   }
@@ -14,7 +35,7 @@ export default class Decks extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.white,
   },
 });
