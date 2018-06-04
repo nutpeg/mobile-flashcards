@@ -6,6 +6,7 @@ import { colors } from '../utils/colors';
 const keyExtractor = ({ title }) => title;
 
 export default class Decks extends Component {
+  static navigationOptions = { title: 'Decks' };
   renderDeck = ({ item }) => {
     const { title, questions } = item;
     const navigate = this.props.navigation.navigate;

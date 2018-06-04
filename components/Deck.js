@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '../utils/colors';
 
-const Deck = props => {
-  const {
-    deck: { title, questions },
-    cardCount,
-  } = props.navigation.state.params;
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.cardCount}>{`${cardCount} cards`}</Text>
-    </View>
-  );
-};
-
-export default Deck;
+export default class Deck extends Component {
+  static navigationOptions = { title: 'Deck' };
+  render() {
+    const {
+      deck: { title, questions },
+      cardCount,
+    } = this.props.navigation.state.params;
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.cardCount}>{`${cardCount} cards`}</Text>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

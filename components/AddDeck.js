@@ -29,7 +29,7 @@ class AddDeck extends Component {
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
-        <Text style={styles.heading}>Add New Deck</Text>
+        <Text style={styles.heading}>Create a Deck</Text>
         <View style={styles.inputContainer}>
           <TextInput
             placeholder="Deck title"
