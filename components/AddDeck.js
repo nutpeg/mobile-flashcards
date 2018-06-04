@@ -8,6 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { colors } from '../utils/colors';
+import CustomButton from './CustomButton';
 
 class AddDeck extends Component {
   state = {
@@ -49,14 +50,7 @@ class AddDeck extends Component {
             value={this.state.title}
           />
         </View>
-        <TouchableOpacity
-          onPress={this.onSubmitDeck}
-          style={styles.inputContainer}
-        >
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Add Deck</Text>
-          </View>
-        </TouchableOpacity>
+        <CustomButton onPress={this.onSubmitDeck} buttonText="Add Deck" />
       </KeyboardAvoidingView>
     );
   }
@@ -82,13 +76,10 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    // margin: 10,
     fontSize: 18,
     backgroundColor: colors.white,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'rgba(0,0,0,0.1)',
-    // paddingHorizontal: 8,
-    // height: 50,
   },
   button: {
     flex: 1,
