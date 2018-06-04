@@ -19,11 +19,21 @@ class AddDeck extends Component {
   };
 
   onSubmitDeck = () => {
-    if (this.state.title === '') alert('Please enter a deck title');
-    this.props.screenProps.saveDeckTitle(this.state.title);
-    this.setState({ title: '' }, () => {
-      this.props.navigation.navigate('Decks');
-    });
+    let chosenTitle = this.state.title;
+    if (chosenTitle === '') {
+      return alert('Please enter a deck title');
+    }
+    // if (chosenTitle) exists already,
+    if (this.props.screenProps.getDeck(chosenTitle)) {
+      return alert(
+        'A deck with that name already exists. Please try a different name',
+      );
+    } else {
+      this.props.screenProps.saveDeckTitle(chosenTitle);
+      this.setState({ title: '' }, () => {
+        this.props.navigation.navigate('Decks');
+      });
+    }
   };
 
   render() {
