@@ -22,12 +22,20 @@ export default class Quiz extends Component {
     return currentIndex + 1 === questionCount;
   };
 
-  onPressConfig = (questionIndex, cardCount, title, questions, navigation) => {
+  onPressConfig = (
+    questionIndex,
+    cardCount,
+    correctTally,
+    title,
+    questions,
+    navigation,
+    points = 0,
+  ) => {
     if (this.onLastQuestion(questionIndex, cardCount)) {
       return () =>
         navigation.navigate('Score', {
           title,
-          correctTally: 0,
+          correctTally: correctTally + points,
           cardCount,
         });
     } else {
@@ -36,6 +44,7 @@ export default class Quiz extends Component {
           questions,
           title,
           cardCount,
+          correctTally: correctTally + points,
           questionIndex: questionIndex + 1,
         });
     }
@@ -47,6 +56,7 @@ export default class Quiz extends Component {
       questions,
       cardCount,
       questionIndex,
+      correctTally,
     } = this.props.navigation.state.params;
     const navigation = this.props.navigation;
     const question = questions[questionIndex].question;
@@ -72,11 +82,24 @@ export default class Quiz extends Component {
           onPress={this.onPressConfig(
             questionIndex,
             cardCount,
+            correctTally,
+            title,
+            questions,
+            navigation,
+            1,
+          )}
+          buttonText="Correct"
+        />
+        <CustomButton
+          onPress={this.onPressConfig(
+            questionIndex,
+            cardCount,
+            correctTally,
             title,
             questions,
             navigation,
           )}
-          buttonText="Correct"
+          buttonText="Incorrect"
         />
       </View>
     );

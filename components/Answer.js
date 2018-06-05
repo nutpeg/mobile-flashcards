@@ -5,7 +5,7 @@ class Answer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={{ marginBottom: 40 }}>
+        <Text style={styles.answerText}>
           {this.props.navigation.getParam('answer')}
         </Text>
         <Button
@@ -24,5 +24,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  answerText: {
+    marginBottom: 40,
+    paddingHorizontal: 20,
   },
 });

@@ -28,6 +28,7 @@ export default class Deck extends Component {
               title,
               cardCount,
               questionIndex: 0,
+              correctTally: 0,
             })
           }
           buttonText="Start a quiz"

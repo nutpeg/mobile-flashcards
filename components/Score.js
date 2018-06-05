@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 class Score extends Component {
   render() {
@@ -11,7 +11,13 @@ class Score extends Component {
     return (
       <View style={styles.container}>
         <Text>{`Your score for the ${title} quiz:`}</Text>
-        <Text>{`${correctTally} out of ${cardCount}`}</Text>
+        <Text
+          style={styles.scoreText}
+        >{`${correctTally} out of ${cardCount}`}</Text>
+        <Button
+          onPress={() => this.props.navigation.navigate('Decks')}
+          title="Back to Decks"
+        />
       </View>
     );
   }
@@ -24,5 +30,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  scoreText: {
+    marginBottom: 40,
+    marginTop: 20,
+    fontSize: 20,
+    paddingHorizontal: 20,
   },
 });
