@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Text, View } from 'react-native';
 import { colors } from '../utils/colors';
 import {
   createBottomTabNavigator,
@@ -8,17 +7,37 @@ import {
 import AddDeck from './AddDeck';
 import Deck from './Deck';
 import Decks from './Decks';
+import Quiz from './Quiz';
+import Score from './Score';
+import Answer from './Answer';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 const DecksNav = createStackNavigator({
   Decks: { screen: Decks },
   Deck: { screen: Deck },
+  Quiz: { screen: Quiz },
+  Score: { screen: Score },
 });
+
+const ModalStack = createStackNavigator(
+  {
+    Main: {
+      screen: DecksNav,
+    },
+    AnswerModal: {
+      screen: Answer,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  },
+);
 
 export default createBottomTabNavigator(
   {
     Decks: {
-      screen: DecksNav,
+      screen: ModalStack,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <MaterialCommunityIcons name="cards" size={26} color={tintColor} />

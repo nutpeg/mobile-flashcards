@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, TouchableHighlight, Text } from 'react-native';
 import PropTypes from 'prop-types';
-
 import { colors } from '../utils/colors';
+import pluralize from '../utils/pluralize';
 
 export default function DeckListItem({ title, cardCount, onPress }) {
   return (
@@ -14,7 +14,9 @@ export default function DeckListItem({ title, cardCount, onPress }) {
       <View style={styles.deckInfo}>
         <View style={styles.details}>
           <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{`${cardCount} cards`}</Text>
+          <Text style={styles.secondaryText}>
+            {`${cardCount} ${pluralize('card', cardCount)}`}
+          </Text>
         </View>
       </View>
     </TouchableHighlight>
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-  subtitle: {
+  secondaryText: {
     color: colors.greyDark,
     fontSize: 16,
     marginTop: 4,
