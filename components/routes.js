@@ -10,6 +10,7 @@ import Decks from './Decks';
 import Quiz from './Quiz';
 import Score from './Score';
 import Answer from './Answer';
+import AddCard from './AddCard';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 const DecksNav = createStackNavigator({
@@ -17,6 +18,7 @@ const DecksNav = createStackNavigator({
   Deck: { screen: Deck },
   Quiz: { screen: Quiz },
   Score: { screen: Score },
+  AddCard: { screen: AddCard },
 });
 
 const ModalStack = createStackNavigator(

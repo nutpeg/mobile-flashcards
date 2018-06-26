@@ -33,6 +33,16 @@ export default class Deck extends Component {
           }
           buttonText="Start a quiz"
         />
+        <CustomButton
+          onPress={() =>
+            navigate('AddCard', {
+              cardCount,
+              title,
+              questions,
+            })
+          }
+          buttonText="Add a card"
+        />
       </View>
     );
   }

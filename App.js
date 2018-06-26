@@ -72,7 +72,23 @@ export default class App extends React.Component {
     return this.state.decks[id];
   };
 
-  // addCardToDeck = (title, card) => { };
+  addCardToDeck = (title, card) => {
+    // find the deck
+    // add the card to its questions array
+    let questions = this.state.decks[title].questions || [];
+    let decksWithNewQuestion = {
+      decks: {
+        ...this.state.decks,
+        [title]: { title, questions: [...questions, card] },
+      },
+    };
+    this.setState(decksWithNewQuestion);
+    AsyncStorage.setItem(key, JSON.stringify(decksWithNewQuestion))
+      .then(() =>
+        console.log(`New question stored to AsyncStorage for deck ${title}`),
+      )
+      .catch(err => console.log('error saving deck to AsyncStorage: ', err));
+  };
 
   render() {
     return (
@@ -80,6 +96,7 @@ export default class App extends React.Component {
         screenProps={{
           decks: this.getDecks(),
           getDeck: this.getDeck,
+          addCardToDeck: this.addCardToDeck,
           saveDeckTitle: this.saveDeckTitle,
         }}
       />
