@@ -11,6 +11,7 @@ import { colors } from '../utils/colors';
 import CustomButton from './CustomButton';
 
 class AddDeck extends Component {
+  static navigationOptions = { headerTitle: 'Add a Deck' };
   state = {
     title: '',
   };

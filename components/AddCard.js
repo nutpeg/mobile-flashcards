@@ -9,8 +9,10 @@ import {
 } from 'react-native';
 import { colors } from '../utils/colors';
 import CustomButton from './CustomButton';
-  
+
 class AddCard extends Component {
+  static navigationOptions = { headerTitle: 'Add a card' };
+
   state = {
     question: '',
     answer: '',

@@ -74,7 +74,7 @@ export default class Quiz extends Component {
         </View>
         <TouchableOpacity
           style={styles.textButtonContainer}
-          onPress={() => navigation.navigate('AnswerModal', { answer })}
+          onPress={() => navigation.navigate('Answer', { answer })}
         >
           <Text style={styles.textButton}>Show answer</Text>
         </TouchableOpacity>

@@ -13,18 +13,10 @@ import Answer from './Answer';
 import AddCard from './AddCard';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
-const DecksNav = createStackNavigator({
-  Decks: { screen: Decks },
-  Deck: { screen: Deck },
-  Quiz: { screen: Quiz },
-  Score: { screen: Score },
-  AddCard: { screen: AddCard },
-});
-
-const ModalStack = createStackNavigator(
+const QuizModal = createStackNavigator(
   {
-    Main: {
-      screen: DecksNav,
+    Quiz: {
+      screen: Quiz,
     },
     AnswerModal: {
       screen: Answer,
@@ -36,10 +28,10 @@ const ModalStack = createStackNavigator(
   },
 );
 
-export default createBottomTabNavigator(
+const DecksTabNav = createBottomTabNavigator(
   {
     Decks: {
-      screen: ModalStack,
+      screen: Decks,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <MaterialCommunityIcons name="cards" size={26} color={tintColor} />
@@ -52,6 +44,7 @@ export default createBottomTabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <MaterialIcons name="add" size={26} color={tintColor} />
         ),
+        tabBarLabel: 'Add Deck',
       },
     },
   },
@@ -68,5 +61,32 @@ export default createBottomTabNavigator(
       inactiveTintColor: colors.greyDark,
       renderIndicator: () => null,
     },
+  },
+);
+
+DecksTabNav.navigationOptions = ({ navigation }) => {
+  let { routeName } = navigation.state.routes[navigation.state.index];
+  let title;
+  if (routeName === 'Decks') {
+    title = 'Decks';
+  } else if (routeName === 'AddDeck') {
+    title = 'Add Deck';
+  }
+  return {
+    title,
+  };
+};
+
+export default createStackNavigator(
+  {
+    Root: { screen: DecksTabNav },
+    Deck: { screen: Deck },
+    Quiz: { screen: Quiz },
+    Answer: { screen: Answer },
+    Score: { screen: Score },
+    AddCard: { screen: AddCard },
+  },
+  {
+    mode: 'modal',
   },
 );
