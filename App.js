@@ -2,11 +2,16 @@ import React from 'react';
 import { AsyncStorage } from 'react-native';
 import { colors } from './utils/colors';
 import AppNav from './components/routes';
+import initialState from './utils/initialState';
 
 const key = '@MOBILE-FLASHCARDS';
 
 export default class App extends React.Component {
-  state = { decks: {} };
+  state = {};
+
+  componentWillMount() {
+    AsyncStorage.removeItem(key);
+  }
 
   async componentDidMount() {
     try {
@@ -14,34 +19,8 @@ export default class App extends React.Component {
       if (!decks) {
         console.log('No AsyncStorage data found.');
         // Uncomment the code below to load some fake data
-        // console.log('Loading fake data.');
-        // this.setState({
-        //   decks: {
-        //     React: {
-        //       title: 'React',
-        //       questions: [
-        //         {
-        //           question: 'What is React?',
-        //           answer: 'A library for managing user interfaces',
-        //         },
-        //         {
-        //           question: 'Where do you make Ajax requests in React?',
-        //           answer: 'The componentDidMount lifecycle event',
-        //         },
-        //       ],
-        //     },
-        //     JavaScript: {
-        //       title: 'JavaScript',
-        //       questions: [
-        //         {
-        //           question: 'What is a closure?',
-        //           answer:
-        //             'The combination of a function and the lexical environment within which that function was declared.',
-        //         },
-        //       ],
-        //     },
-        //   },
-        // });
+        console.log('Loading fake data.');
+        this.setState(initialState);
       } else {
         console.log('AsyncStorage data found. Loading...', decks);
         this.setState(JSON.parse(decks));
@@ -52,15 +31,13 @@ export default class App extends React.Component {
   }
 
   getDecks = () => {
-    return Object.values(this.state.decks);
+    return Object.values(this.state);
   };
 
   saveDeckTitle = title => {
     let newDecks = {
-      decks: {
-        ...this.state.decks,
-        [title]: { title },
-      },
+      ...this.state,
+      [title]: { title },
     };
     this.setState(newDecks);
     AsyncStorage.setItem(key, JSON.stringify(newDecks))
@@ -69,16 +46,16 @@ export default class App extends React.Component {
   };
 
   getDeck = id => {
-    return this.state.decks[id];
+    return this.state[id];
   };
 
   addCardToDeck = (title, card) => {
     // find the deck
     // add the card to its questions array
-    let questions = this.state.decks[title].questions || [];
+    let questions = this.state[title].questions || [];
     let decksWithNewQuestion = {
       decks: {
-        ...this.state.decks,
+        ...this.state,
         [title]: { title, questions: [...questions, card] },
       },
     };
