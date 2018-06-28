@@ -1,6 +1,5 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
-import { colors } from './utils/colors';
 import AppNav from './components/routes';
 import initialState from './utils/initialState';
 
