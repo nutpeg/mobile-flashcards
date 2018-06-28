@@ -2,6 +2,12 @@ import React from 'react';
 import { AsyncStorage } from 'react-native';
 import AppNav from './components/routes';
 import initialState from './utils/initialState';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const key = '@MOBILE-FLASHCARDS';
 
@@ -68,14 +74,16 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <AppNav
-        screenProps={{
-          decks: this.getDecks(),
-          getDeck: this.getDeck,
-          addCardToDeck: this.addCardToDeck,
-          saveDeckTitle: this.saveDeckTitle,
-        }}
-      />
+      <Provider store={store}>
+        <AppNav
+          screenProps={{
+            decks: this.getDecks(),
+            getDeck: this.getDeck,
+            addCardToDeck: this.addCardToDeck,
+            saveDeckTitle: this.saveDeckTitle,
+          }}
+        />
+      </Provider>
     );
   }
 }
