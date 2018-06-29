@@ -4,13 +4,13 @@ import {
   createBottomTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
-import AddDeck from './AddDeck';
-import Deck from './Deck';
-import Decks from './Decks';
-import Quiz from './Quiz';
-import Score from './Score';
-import Answer from './Answer';
-import AddCard from './AddCard';
+import AddDeck from '../components/AddDeck';
+import Deck from '../components/Deck';
+import Decks from '../components/Decks';
+import Quiz from '../components/Quiz';
+import Score from '../components/Score';
+import Answer from '../components/Answer';
+import AddCard from '../components/AddCard';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 const QuizModal = createStackNavigator(

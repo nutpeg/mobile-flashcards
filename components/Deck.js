@@ -7,6 +7,10 @@ import CustomButton from './CustomButton';
 export default class Deck extends Component {
   static navigationOptions = { headerTitle: 'Deck Info' };
 
+  componentDidMount() {
+    this.props.dispatch(fetchDecks());
+  }
+
   render() {
     const {
       deck: { title, questions },

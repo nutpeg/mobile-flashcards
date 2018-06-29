@@ -1,39 +1,35 @@
 import React from 'react';
 import { AsyncStorage } from 'react-native';
-import AppNav from './components/routes';
+import AppNav from './config/routes';
 import initialState from './utils/initialState';
-import { createStore, applyMiddleware } from 'redux';
+import store from './config/store';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-const key = '@MOBILE-FLASHCARDS';
+import { KEY } from './utils/asyncStorageKey';
+import { fetchDecks } from './actions';
 
 export default class App extends React.Component {
   state = {};
 
   componentWillMount() {
-    AsyncStorage.removeItem(key);
+    AsyncStorage.removeItem(KEY);
   }
-
-  async componentDidMount() {
-    try {
-      let decks = await AsyncStorage.getItem(key);
-      if (!decks) {
-        console.log('No AsyncStorage data found.');
-        // Uncomment the code below to load some fake data
-        console.log('Loading fake data.');
-        this.setState(initialState);
-      } else {
-        console.log('AsyncStorage data found. Loading...', decks);
-        this.setState(JSON.parse(decks));
-      }
-    } catch (err) {
-      console.log('error retrieving AsyncStorage item: ', err);
-    }
-  }
+  
+  // async componentDidMount() {
+  //   try {
+  //     let decks = await AsyncStorage.getItem(KEY);
+  //     if (!decks) {
+  //       console.log('No AsyncStorage data found.');
+  //       // Uncomment the code below to load some fake data
+  //       console.log('Loading fake data.');
+  //       this.setState(initialState);
+  //     } else {
+  //       console.log('AsyncStorage data found. Loading...', decks);
+  //       this.setState(JSON.parse(decks));
+  //     }
+  //   } catch (err) {
+  //     console.log('error retrieving AsyncStorage item: ', err);
+  //   }
+  // }
 
   getDecks = () => {
     return Object.values(this.state);
@@ -45,7 +41,7 @@ export default class App extends React.Component {
       [title]: { title },
     };
     this.setState(newDecks);
-    AsyncStorage.setItem(key, JSON.stringify(newDecks))
+    AsyncStorage.setItem(KEY, JSON.stringify(newDecks))
       .then(() => console.log('New deck stored to AsyncStorage'))
       .catch(err => console.log('error saving deck to AsyncStorage: ', err));
   };
@@ -65,7 +61,7 @@ export default class App extends React.Component {
       },
     };
     this.setState(decksWithNewQuestion);
-    AsyncStorage.setItem(key, JSON.stringify(decksWithNewQuestion))
+    AsyncStorage.setItem(KEY, JSON.stringify(decksWithNewQuestion))
       .then(() =>
         console.log(`New question stored to AsyncStorage for deck ${title}`),
       )
