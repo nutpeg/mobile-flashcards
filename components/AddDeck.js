@@ -4,10 +4,11 @@ import {
   KeyboardAvoidingView,
   Text,
   TextInput,
-  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 import { colors } from '../utils/colors';
+import { connect } from 'react-redux';
+import { addDeck } from '../actions';
 import CustomButton from './CustomButton';
 
 class AddDeck extends Component {
@@ -22,16 +23,15 @@ class AddDeck extends Component {
 
   onSubmitDeck = () => {
     let chosenTitle = this.state.title;
-    if (chosenTitle === '') {
+    if (chosenTitle.trim() === '') {
       return alert('Please enter a deck title');
     }
-    // if (chosenTitle) exists already,
-    if (this.props.screenProps.getDeck(chosenTitle)) {
+    if (Object.keys(this.props.decks).includes(chosenTitle)) {
       return alert(
         'A deck with that name already exists. Please try a different name',
       );
     } else {
-      this.props.screenProps.saveDeckTitle(chosenTitle);
+      this.props.dispatch(addDeck(chosenTitle));
       this.setState({ title: '' }, () => {
         this.props.navigation.navigate('Decks');
       });
@@ -56,8 +56,6 @@ class AddDeck extends Component {
     );
   }
 }
-
-export default AddDeck;
 
 const styles = StyleSheet.create({
   container: {
@@ -93,3 +91,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+function mapStateToProps(state) {
+  return {
+    decks: state,
+  };
+}
+
+export default connect(mapStateToProps)(AddDeck);

@@ -4,7 +4,6 @@ import {
   KeyboardAvoidingView,
   Text,
   TextInput,
-  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 import { colors } from '../utils/colors';
@@ -23,20 +22,19 @@ class AddCard extends Component {
   };
 
   onSubmitCard = () => {
-    const question = this.state.question;
-    const answer = this.state.answer;
-    const title = this.props.navigation.state.params.title;
-    const cardCount = this.props.navigation.state.params.cardCount;
-    console.log('cardCount', cardCount);
+    const { question, answer } = this.state;
+    const { title, cardCount, addCard } = this.props.navigation.state.params;
+
+    // Is question complete
     if (question === '' || answer === '') {
       return alert('Please enter a complete question and answer');
     }
+
     const card = {
       question,
       answer,
     };
-    const deck = this.props.screenProps.getDeck(title);
-    this.props.screenProps.addCardToDeck(title, card);
+    addCard(title, card)
     this.setState(
       {
         question: '',
@@ -44,16 +42,13 @@ class AddCard extends Component {
       },
       () => {
         this.props.navigation.navigate('Deck', {
-          deck,
-          cardCount: cardCount + 1,
+          title,
         });
       },
     );
   };
 
   render() {
-    // const cardCount = this.props.navigation.state.params.cardCount;
-    // console.log('inside cardCount', cardCount);
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.heading}>Add a Card</Text>

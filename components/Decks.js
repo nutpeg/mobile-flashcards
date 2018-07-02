@@ -4,36 +4,48 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import DecksListItem from './DecksListItem';
 import { colors } from '../utils/colors';
 import CustomButton from './CustomButton';
+import { fetchDecks, addCardToDeck } from '../actions';
 
 const keyExtractor = ({ title }) => title;
 
 class Decks extends Component {
   static navigationOptions = { title: 'Decks' };
+
+  componentDidMount() {
+    this.props.dispatch(fetchDecks());
+  }
+
+  addCard = (title, deck) => {
+    this.props.dispatch(addCardToDeck(title, deck));
+  };
+
   renderDeck = ({ item }) => {
     const { title, questions } = item;
-    const navigate = this.props.navigation.navigate;
-    const cardCount = questions ? questions.length : 0;
+    const cardCount = questions.length;
     return (
       <DecksListItem
         title={title}
         cardCount={cardCount}
-        onPress={() => navigate('Deck', { deck: item, cardCount: cardCount })}
+        onPress={() =>
+          this.props.navigation.navigate('Deck', {
+            title,
+            addCard: (title, deck) => this.addCard(title, deck),
+          })
+        }
       />
     );
   };
   render() {
-    console.log('decks? ', this.props.decks);
-    const decks = this.props.screenProps.decks;
     return (
       <View style={styles.container}>
-        {this.props.decks ? (
+        {Object.keys(this.props.decks).length === 0 ? (
           <CustomButton
             onPress={() => this.props.navigation.navigate('AddDeck')}
             buttonText="Add your first deck"
           />
         ) : (
           <FlatList
-            data={decks}
+            data={Object.values(this.props.decks)}
             keyExtractor={keyExtractor}
             renderItem={this.renderDeck}
           />

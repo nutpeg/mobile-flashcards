@@ -3,20 +3,20 @@ import { View, Text, StyleSheet } from 'react-native';
 import { colors } from '../utils/colors';
 import pluralize from '../utils/pluralize';
 import CustomButton from './CustomButton';
+import { connect } from 'react-redux';
 
-export default class Deck extends Component {
+class Deck extends Component {
   static navigationOptions = { headerTitle: 'Deck Info' };
-
-  componentDidMount() {
-    this.props.dispatch(fetchDecks());
-  }
 
   render() {
     const {
-      deck: { title, questions },
-      cardCount,
+      title,
+      addCard,
     } = this.props.navigation.state.params;
-    const navigate = this.props.navigation.navigate;
+
+    const { questions } = this.props.decks[title];
+    const cardCount = questions.length;
+    const { navigate } = this.props.navigation;
 
     return (
       <View style={styles.container}>
@@ -43,6 +43,7 @@ export default class Deck extends Component {
               cardCount,
               title,
               questions,
+              addCard,
             })
           }
           buttonText="Add a card"
@@ -70,3 +71,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+
+function mapStateToProps(state) {
+  return { decks: state };
+}
+
+export default connect(mapStateToProps)(Deck);
