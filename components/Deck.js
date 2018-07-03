@@ -27,7 +27,7 @@ class Deck extends Component {
         <CustomButton
           disabled={cardCount === 0}
           onPress={() =>
-            navigate('QuizModal', {
+            navigate('Quiz', {
               questions,
               title,
               cardCount,

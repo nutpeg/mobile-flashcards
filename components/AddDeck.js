@@ -10,6 +10,7 @@ import { colors } from '../utils/colors';
 import { connect } from 'react-redux';
 import { addDeck } from '../actions';
 import CustomButton from './CustomButton';
+import CustomInput from './CustomInput';
 
 class AddDeck extends Component {
   static navigationOptions = { headerTitle: 'Add a Deck' };
@@ -42,15 +43,11 @@ class AddDeck extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.heading}>Create a Deck</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Deck title"
-            style={styles.input}
-            underlineColorAndroid="transparent"
-            onChangeText={val => this.onChangeText(val)}
-            value={this.state.title}
-          />
-        </View>
+        <CustomInput
+          placeholder="Deck Title"
+          onChangeText={this.onChangeText}
+          value={this.state.title}
+        />
         <CustomButton onPress={this.onSubmitDeck} buttonText="Add Deck" />
       </KeyboardAvoidingView>
     );
@@ -67,32 +64,32 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginBottom: 20,
   },
-  inputContainer: {
-    borderRadius: 5,
-    paddingHorizontal: 15,
-    backgroundColor: colors.white,
-    height: 60,
-    width: 320,
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  input: {
-    flex: 1,
-    fontSize: 18,
-    backgroundColor: colors.white,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'rgba(0,0,0,0.1)',
-  },
-  button: {
-    flex: 1,
-    backgroundColor: colors.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: colors.white,
-    fontSize: 18,
-  },
+  // inputContainer: {
+  //   borderRadius: 5,
+  //   paddingHorizontal: 15,
+  //   backgroundColor: colors.white,
+  //   height: 60,
+  //   width: 320,
+  //   flexDirection: 'row',
+  //   marginBottom: 20,
+  // },
+  // input: {
+  //   flex: 1,
+  //   fontSize: 18,
+  //   backgroundColor: colors.white,
+  //   borderBottomWidth: StyleSheet.hairlineWidth,
+  //   borderBottomColor: 'rgba(0,0,0,0.1)',
+  // },
+  // button: {
+  //   flex: 1,
+  //   backgroundColor: colors.primary,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
+  // buttonText: {
+  //   color: colors.white,
+  //   fontSize: 18,
+  // },
 });
 
 function mapStateToProps(state) {

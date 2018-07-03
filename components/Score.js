@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import {
+  clearLocalNotification,
+  setLocalNotification,
+} from '../api/notificationsAPI';
 
 class Score extends Component {
   static navigationOptions = { headerTitle: 'Your score' };
+
+  componentDidMount() {
+    clearLocalNotification().then(setLocalNotification);
+  }
 
   render() {
     const {
@@ -16,11 +24,14 @@ class Score extends Component {
         <Text
           style={styles.scoreText}
         >{`${correctTally} out of ${cardCount}`}</Text>
+        <View style={styles.simpleButton}>
+          <Button
+            onPress={() => this.props.navigation.navigate('Decks')}
+            title="Back to Decks"
+          />
+        </View>
         <Button
-          onPress={() => this.props.navigation.navigate('Decks')}
-          title="Back to Decks"
-        />
-        <Button
+          style={styles.simpleButton}
           onPress={() => this.props.navigation.navigate('Quiz')}
           title="Restart Quiz"
         />
@@ -42,5 +53,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 20,
     paddingHorizontal: 20,
+  },
+  simpleButton: {
+    marginBottom: 20,
   },
 });

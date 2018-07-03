@@ -10,7 +10,7 @@ class Answer extends Component {
           {this.props.navigation.getParam('answer')}
         </Text>
         <Button
-          onPress={() => this.props.navigation.goBack()}
+          onPress={() => this.props.navigation.popToTop()}
           title="Back to question"
         />
       </View>

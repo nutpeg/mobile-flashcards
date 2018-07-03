@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { colors } from '../utils/colors';
 import CustomButton from './CustomButton';
+import CustomInput from './CustomInput';
 
 class AddCard extends Component {
   static navigationOptions = { headerTitle: 'Add a card' };
@@ -52,25 +53,17 @@ class AddCard extends Component {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <Text style={styles.heading}>Add a Card</Text>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Question"
-            style={styles.input}
-            underlineColorAndroid="transparent"
-            onChangeText={val => this.onChangeText('question', val)}
-            value={this.state.title}
-          />
-        </View>
-        <View style={[styles.inputContainer, styles.inputContainerMultiline]}>
-          <TextInput
-            placeholder="Answer"
-            multiline
-            style={[styles.input, styles.inputMultiline]}
-            underlineColorAndroid="transparent"
-            onChangeText={val => this.onChangeText('answer', val)}
-            value={this.state.title}
-          />
-        </View>
+        <CustomInput
+          placeholder="Question"
+          onChangeText={val => this.onChangeText('question', val)}
+          value={this.state.title}
+        />
+        <CustomInput
+          placeholder="Answer"
+          onChangeText={val => this.onChangeText('answer', val)}
+          value={this.state.title}
+          multiline={true}
+        />
         <CustomButton onPress={this.onSubmitCard} buttonText="Add Card" />
       </KeyboardAvoidingView>
     );
@@ -89,36 +82,36 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginBottom: 20,
   },
-  inputContainer: {
-    paddingHorizontal: 15,
-    borderRadius: 5,
-    backgroundColor: colors.white,
-    height: 60,
-    width: 320,
-    flexDirection: 'row',
-    marginBottom: 20,
-  },
-  inputContainerMultiline: {
-    height: 120,
-  },
-  input: {
-    flex: 1,
-    fontSize: 18,
-    backgroundColor: colors.white,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'rgba(0,0,0,0.1)',
-  },
-  inputMultiline: {
-    paddingTop: 20,
-  },
-  button: {
-    flex: 1,
-    backgroundColor: colors.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: colors.white,
-    fontSize: 18,
-  },
+  // inputContainer: {
+  //   paddingHorizontal: 15,
+  //   borderRadius: 5,
+  //   backgroundColor: colors.white,
+  //   height: 60,
+  //   width: 320,
+  //   flexDirection: 'row',
+  // inputContainerMultiline: {
+  //   height: 120,
+  // },    marginBottom: 20,
+  // },
+
+  // input: {
+  //   flex: 1,
+  //   fontSize: 18,
+  //   backgroundColor: colors.white,
+  //   borderBottomWidth: StyleSheet.hairlineWidth,
+  //   borderBottomColor: 'rgba(0,0,0,0.1)',
+  // },
+  // inputMultiline: {
+  //   paddingTop: 20,
+  // },
+  // button: {
+  //   flex: 1,
+  //   backgroundColor: colors.primary,
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
+  // buttonText: {
+  //   color: colors.white,
+  //   fontSize: 18,
+  // },
 });
