@@ -10,11 +10,6 @@ const CustomInput = ({
   multiline = false,
 }) => (
   <View
-    // style={
-    //   multiline
-    //     ? styles.inputContainer
-    //     : [styles.inputContainer, styles.inputContainerMultiline]
-    // }
       style={
         multiline
           ? [styles.inputContainer, styles.inputContainerMultiline]

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {
-  View,
   KeyboardAvoidingView,
   Text,
-  TextInput,
   StyleSheet,
 } from 'react-native';
 import { colors } from '../utils/colors';
@@ -64,32 +62,6 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginBottom: 20,
   },
-  // inputContainer: {
-  //   borderRadius: 5,
-  //   paddingHorizontal: 15,
-  //   backgroundColor: colors.white,
-  //   height: 60,
-  //   width: 320,
-  //   flexDirection: 'row',
-  //   marginBottom: 20,
-  // },
-  // input: {
-  //   flex: 1,
-  //   fontSize: 18,
-  //   backgroundColor: colors.white,
-  //   borderBottomWidth: StyleSheet.hairlineWidth,
-  //   borderBottomColor: 'rgba(0,0,0,0.1)',
-  // },
-  // button: {
-  //   flex: 1,
-  //   backgroundColor: colors.primary,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // buttonText: {
-  //   color: colors.white,
-  //   fontSize: 18,
-  // },
 });
 
 function mapStateToProps(state) {

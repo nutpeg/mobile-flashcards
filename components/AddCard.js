@@ -82,36 +82,4 @@ const styles = StyleSheet.create({
     fontSize: 26,
     marginBottom: 20,
   },
-  // inputContainer: {
-  //   paddingHorizontal: 15,
-  //   borderRadius: 5,
-  //   backgroundColor: colors.white,
-  //   height: 60,
-  //   width: 320,
-  //   flexDirection: 'row',
-  // inputContainerMultiline: {
-  //   height: 120,
-  // },    marginBottom: 20,
-  // },
-
-  // input: {
-  //   flex: 1,
-  //   fontSize: 18,
-  //   backgroundColor: colors.white,
-  //   borderBottomWidth: StyleSheet.hairlineWidth,
-  //   borderBottomColor: 'rgba(0,0,0,0.1)',
-  // },
-  // inputMultiline: {
-  //   paddingTop: 20,
-  // },
-  // button: {
-  //   flex: 1,
-  //   backgroundColor: colors.primary,
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  // },
-  // buttonText: {
-  //   color: colors.white,
-  //   fontSize: 18,
-  // },
 });

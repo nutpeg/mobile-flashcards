@@ -4,7 +4,6 @@ import { colors } from '../utils/colors';
 import CustomButton from './CustomButton';
 
 export default class Quiz extends Component {
-  //  static navigationOptions = { header: null };
   static navigationOptions = ({ navigation }) => {
     return { headerTitle: navigation.getParam('title') + ' Quiz' };
   };
@@ -113,7 +112,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   countSection: {
-    // height: 30,
     width: '90%',
     paddingLeft: 15,
     flexDirection: 'row',

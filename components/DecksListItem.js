@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, TouchableHighlight, Text } from 'react-native';
-import PropTypes from 'prop-types';
 import { colors } from '../utils/colors';
 import pluralize from '../utils/pluralize';
 
@@ -22,12 +21,6 @@ export default function DeckListItem({ title, cardCount, onPress }) {
     </TouchableHighlight>
   );
 }
-
-DeckListItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  cardCount: PropTypes.number.isRequired,
-  onPress: PropTypes.func.isRequired,
-};
 
 const styles = StyleSheet.create({
   container: {

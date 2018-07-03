@@ -1,5 +1,3 @@
-import { AsyncStorage } from 'react-native';
-import { KEY } from '../config/asyncStorageKey';
 import API from '../api/asyncAPI';
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';

@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { KEY } from '../config/asyncStorageKey';
+import { KEY } from '../config/asyncStorageKeys';
 
 const getDecks = async () => {
   try {
