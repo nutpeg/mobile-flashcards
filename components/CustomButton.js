@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors } from '../utils/colors';
 
@@ -6,7 +6,7 @@ const CustomButton = ({ onPress, buttonText, disabled }) => (
   <TouchableOpacity
     disabled={disabled}
     onPress={onPress}
-    style={styles.inputContainer}
+    style={styles.buttonContainer}
   >
     <View style={[styles.button, disabled && styles.inactiveButton]}>
       <Text style={styles.buttonText}>{buttonText}</Text>
@@ -17,9 +17,10 @@ const CustomButton = ({ onPress, buttonText, disabled }) => (
 export default CustomButton;
 
 const styles = StyleSheet.create({
-  inputContainer: {
+  buttonContainer: {
     paddingHorizontal: 30,
     height: 60,
+    width: 380,
     flexDirection: 'row',
     marginBottom: 20,
   },
@@ -32,6 +33,7 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
+    borderRadius: 5,
     backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',

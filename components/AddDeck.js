@@ -68,8 +68,11 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   inputContainer: {
-    paddingHorizontal: 30,
+    borderRadius: 5,
+    paddingHorizontal: 15,
+    backgroundColor: colors.white,
     height: 60,
+    width: 320,
     flexDirection: 'row',
     marginBottom: 20,
   },

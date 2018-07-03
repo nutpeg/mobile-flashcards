@@ -34,7 +34,7 @@ class AddCard extends Component {
       question,
       answer,
     };
-    addCard(title, card)
+    addCard(title, card);
     this.setState(
       {
         question: '',
@@ -61,10 +61,11 @@ class AddCard extends Component {
             value={this.state.title}
           />
         </View>
-        <View style={styles.inputContainer}>
+        <View style={[styles.inputContainer, styles.inputContainerMultiline]}>
           <TextInput
             placeholder="Answer"
-            style={styles.input}
+            multiline
+            style={[styles.input, styles.inputMultiline]}
             underlineColorAndroid="transparent"
             onChangeText={val => this.onChangeText('answer', val)}
             value={this.state.title}
@@ -89,10 +90,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   inputContainer: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 15,
+    borderRadius: 5,
+    backgroundColor: colors.white,
     height: 60,
+    width: 320,
     flexDirection: 'row',
     marginBottom: 20,
+  },
+  inputContainerMultiline: {
+    height: 120,
   },
   input: {
     flex: 1,
@@ -100,6 +107,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: 'rgba(0,0,0,0.1)',
+  },
+  inputMultiline: {
+    paddingTop: 20,
   },
   button: {
     flex: 1,
