@@ -20,6 +20,10 @@ class Score extends Component {
           onPress={() => this.props.navigation.navigate('Decks')}
           title="Back to Decks"
         />
+        <Button
+          onPress={() => this.props.navigation.navigate('Quiz')}
+          title="Restart Quiz"
+        />
       </View>
     );
   }
