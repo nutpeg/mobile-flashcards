@@ -9,6 +9,8 @@ the end.
 
 ## Quick guide to setting up
 
+The app has been tested on the iOS simulator and an Android Moto G5+.
+
 ### Node.js, Expo, iOS simulator
 
 The app requires Node.js and Expo to run. If you need to install either of these
