@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
 class Answer extends Component {
-  static navigationOptions = { header: null  };
   render() {
     return (
       <View style={styles.container}>
@@ -10,7 +9,7 @@ class Answer extends Component {
           {this.props.navigation.getParam('answer')}
         </Text>
         <Button
-          onPress={() => this.props.navigation.popToTop()}
+          onPress={() => this.props.navigation.goBack(null)}
           title="Back to question"
         />
       </View>

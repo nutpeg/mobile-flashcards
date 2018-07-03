@@ -13,12 +13,9 @@ import Answer from '../components/Answer';
 import AddCard from '../components/AddCard';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
-const QuizModal = createStackNavigator(
+const AnswerModal = createStackNavigator(
   {
-    Quiz: {
-      screen: Quiz,
-    },
-    AnswerModal: {
+    Answer: {
       screen: Answer,
     },
   },
@@ -81,12 +78,9 @@ export default createStackNavigator(
   {
     Root: { screen: DecksTabNav },
     Deck: { screen: Deck },
-    Quiz: { screen: Quiz },
-    Answer: { screen: Answer },
-    Score: { screen: Score },
     AddCard: { screen: AddCard },
-  },
-  {
-    mode: 'modal',
+    Quiz: { screen: Quiz },
+    AnswerModal: { screen: AnswerModal },
+    Score: { screen: Score },
   },
 );
