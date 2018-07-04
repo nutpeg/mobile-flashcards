@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import {
-  KeyboardAvoidingView,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import { KeyboardAvoidingView, Text, StyleSheet } from 'react-native';
 import { colors } from '../utils/colors';
 import { connect } from 'react-redux';
-import { addDeck } from '../actions';
+import { addDeck, addCardToDeck } from '../actions';
 import CustomButton from './CustomButton';
 import CustomInput from './CustomInput';
 
@@ -18,6 +14,10 @@ class AddDeck extends Component {
 
   onChangeText = title => {
     this.setState({ title });
+  };
+
+  addCard = (title, deck) => {
+    this.props.dispatch(addCardToDeck(title, deck));
   };
 
   onSubmitDeck = () => {
@@ -32,7 +32,10 @@ class AddDeck extends Component {
     } else {
       this.props.dispatch(addDeck(chosenTitle));
       this.setState({ title: '' }, () => {
-        this.props.navigation.navigate('Decks');
+        this.props.navigation.navigate('Deck', {
+          title: chosenTitle,
+          addCard: (title, deck) => this.addCard(title, deck),
+        });
       });
     }
   };
