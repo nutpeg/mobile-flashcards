@@ -7,20 +7,22 @@ export function clearLocalNotification() {
     .then(Notifications.cancelAllScheduledNotificationsAsync)
 }
 
+const notificationConfig = {
+  title: 'Quiz time?',
+  body: 'A few minutes a day is all you need',
+  ios: {
+    sound: true,
+  },
+  android: {
+    sound: true,
+    priority: 'high',
+    sticky: false,
+    vibrate: true,
+  },
+};
+
 function createNotification() {
-  return {
-    title: 'Quiz time?',
-    body: 'A few minutes a day is all you need',
-    ios: {
-      sound: true,
-    },
-    android: {
-      sound: true,
-      priority: 'high',
-      sticky: false,
-      vibrate: true,
-    },
-  };
+  return notificationConfig;
 }
 
 export function setLocalNotification() {
